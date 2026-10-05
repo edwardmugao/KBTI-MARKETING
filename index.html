@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1e6091">
+<title>KBTI Survey Correction Form</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #1e6091 0%, #2a7ab8 100%);
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 16px;
+        color: #2c3e50;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        margin: auto 0;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #1e6091 0%, #2a7ab8 100%);
+        color: white;
+        padding: 24px 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #f39c12 0%, #e74c3c 50%, #27ae60 100%);
+    }
+
+    .header .logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .header h1 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        margin-bottom: 4px;
+    }
+
+    .header p {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        font-weight: 400;
+    }
+
+    .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 3px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        margin-top: 8px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    form {
+        padding: 24px 20px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+        position: relative;
+    }
+
+    label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    label .required {
+        color: #e74c3c;
+        font-weight: 700;
+    }
+
+    label i {
+        color: #1e6091;
+        font-size: 0.85rem;
+    }
+
+    /* ===== INPUT WRAPPER WITH LIVE COUNTER & CLEAR ===== */
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px 44px 12px 14px; /* Right padding for the clear button */
+        border: 2px solid #e1e5ea;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        color: #2c3e50;
+        background: #f8fafc;
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        min-height: 48px;
+        /* Ensure text is always visible */
+        caret-color: #1e6091;
+        line-height: 1.4;
+    }
+
+    textarea {
+        padding-right: 44px;
+        padding-top: 12px;
+        resize: vertical;
+        min-height: 100px;
+        line-height: 1.6;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #1e6091;
+        background: #ffffff;
+        box-shadow: 0 0 0 4px rgba(30, 96, 145, 0.12);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #a0aab5;
+        opacity: 1;
+    }
+
+    /* When there's a value, make text bold for visibility */
+    input.has-value,
+    textarea.has-value {
+        font-weight: 500;
+        color: #1a1f2e;
+        background: #ffffff;
+        border-color: #b8d4f0;
+    }
+
+    select {
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e6091' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 18px;
+        padding-right: 40px;
+        cursor: pointer;
+    }
+
+    /* ===== CLEAR BUTTON ===== */
+    .clear-btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #e1e5ea;
+        color: #7f8c8d;
+        border: none;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        transition: all 0.2s ease;
+        z-index: 2;
+    }
+
+    .clear-btn:hover {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .clear-btn.visible {
+        display: flex;
+    }
+
+    /* ===== CHARACTER COUNTER ===== */
+    .char-counter {
+        position: absolute;
+        bottom: 6px;
+        right: 14px;
+        font-size: 0.68rem;
+        color: #95a5a6;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-weight: 500;
+        pointer-events: none;
+        display: none;
+    }
+
+    .char-counter.visible {
+        display: block;
+    }
+
+    .char-counter.near-limit {
+        color: #f39c12;
+    }
+
+    .char-counter.at-limit {
+        color: #e74c3c;
+        font-weight: 700;
+    }
+
+    .input-hint {
+        font-size: 0.72rem;
+        color: #7f8c8d;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .input-hint i {
+        font-size: 0.7rem;
+        color: #f39c12;
+    }
+
+    .input-error {
+        border-color: #e74c3c !important;
+        background: #fff5f5 !important;
+    }
+
+    .error-message {
+        display: none;
+        font-size: 0.75rem;
+        color: #e74c3c;
+        margin-top: 5px;
+        align-items: center;
+        gap: 4px;
+        font-weight: 500;
+    }
+
+    .error-message.show {
+        display: flex;
+    }
+
+    /* ===== LIVE PREVIEW UNDER INPUT (echoes what's typed) ===== */
+    .live-echo {
+        display: none;
+        margin-top: 6px;
+        padding: 6px 10px;
+        background: #e8f4fd;
+        border-left: 3px solid #1e6091;
+        border-radius: 5px;
+        font-size: 0.78rem;
+        color: #2c3e50;
+        font-weight: 500;
+        word-wrap: break-word;
+        animation: echoIn 0.2s ease;
+    }
+
+    .live-echo.visible {
+        display: block;
+    }
+
+    .live-echo .echo-label {
+        color: #1e6091;
+        font-weight: 700;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-right: 4px;
+    }
+
+    @keyframes echoIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSE SELECTOR ===== */
+    .response-selector {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-top: 4px;
+    }
+
+    .response-option {
+        position: relative;
+    }
+
+    .response-option input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .response-option label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 12px 8px;
+        background: #f8fafc;
+        border: 2px solid #e1e5ea;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: #4a5568;
+        transition: all 0.2s ease;
+        text-align: center;
+        margin: 0;
+        user-select: none;
+        min-height: 46px;
+    }
+
+    .response-option label:active {
+        transform: scale(0.97);
+    }
+
+    .response-option label i {
+        font-size: 0.85rem;
+        color: inherit;
+    }
+
+    .response-option input[type="radio"]:checked + label {
+        background: #1e6091;
+        border-color: #1e6091;
+        color: white;
+        box-shadow: 0 4px 12px rgba(30, 96, 145, 0.35);
+        transform: scale(1.02);
+    }
+
+    .response-option input[type="radio"]:focus-visible + label {
+        box-shadow: 0 0 0 4px rgba(30, 96, 145, 0.2);
+    }
+
+    /* ===== SUBMIT BUTTON ===== */
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #25D366 0%, #1ebe5d 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+        box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        font-family: inherit;
+        letter-spacing: 0.3px;
+        margin-top: 6px;
+        min-height: 54px;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
+    }
+
+    .submit-btn:active:not(:disabled) {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+    }
+
+    .submit-btn:disabled {
+        background: #95a5a6;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+    }
+
+    .submit-btn i {
+        font-size: 1.15rem;
+    }
+
+    /* ===== PREVIEW CARD ===== */
+    .preview-section {
+        margin-top: 20px;
+        padding: 16px;
+        background: #f0f7ff;
+        border: 2px dashed #b8d4f0;
+        border-radius: 12px;
+        display: none;
+    }
+
+    .preview-section.show {
+        display: block;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .preview-section h3 {
+        font-size: 0.85rem;
+        color: #1e6091;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .preview-section pre {
+        font-family: inherit;
+        font-size: 0.82rem;
+        color: #2c3e50;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        line-height: 1.6;
+    }
+
+    /* ===== SUCCESS TOAST ===== */
+    .toast {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-120px);
+        background: #27ae60;
+        color: white;
+        padding: 14px 24px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 9999;
+        transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        max-width: calc(100% - 40px);
+    }
+
+    .toast.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .toast.error {
+        background: #e74c3c;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-note {
+        text-align: center;
+        font-size: 0.72rem;
+        color: #7f8c8d;
+        padding: 0 20px 20px;
+        line-height: 1.5;
+    }
+
+    .footer-note i {
+        color: #25D366;
+    }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    @media (max-width: 360px) {
+        html { font-size: 14px; }
+        body { padding: 10px; }
+        .container { border-radius: 12px; }
+        .header { padding: 20px 16px; }
+        .header h1 { font-size: 1.1rem; }
+        .header p { font-size: 0.72rem; }
+        .header .logo { width: 48px; height: 48px; font-size: 20px; }
+        form { padding: 18px 16px 16px; }
+        .response-selector { grid-template-columns: 1fr; }
+        input, select, textarea { padding: 11px 40px 11px 12px; font-size: 0.9rem; }
+        .submit-btn { padding: 13px; font-size: 0.92rem; }
+        label { font-size: 0.8rem; }
+        .live-echo { font-size: 0.72rem; }
+    }
+
+    @media (min-width: 361px) and (max-width: 480px) {
+        .response-selector { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 768px) {
+        body { padding: 32px 20px; align-items: center; }
+        .container { border-radius: 20px; }
+        .header { padding: 32px 24px; }
+        .header h1 { font-size: 1.5rem; }
+        .header p { font-size: 0.9rem; }
+        form { padding: 32px 32px 28px; }
+        .form-group { margin-bottom: 22px; }
+        label { font-size: 0.9rem; }
+        input, select, textarea { font-size: 1rem; padding: 14px 44px 14px 16px; }
+        .submit-btn { font-size: 1.05rem; padding: 16px; }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+        body { align-items: flex-start; padding: 12px; }
+        .header { padding: 16px 20px; }
+        .header .logo { width: 40px; height: 40px; font-size: 18px; margin-bottom: 6px; }
+        .header h1 { font-size: 1.05rem; }
+        form { padding: 18px 20px; }
+        .form-group { margin-bottom: 14px; }
+        input, select, textarea { padding: 10px 40px 10px 12px; }
+        .response-option label { padding: 10px 6px; min-height: 42px; }
+    }
+
+    @media (min-width: 1024px) {
+        .container { max-width: 640px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body { background: linear-gradient(135deg, #0f2d43 0%, #1a4a6b 100%); }
+        .container { background: #1a1f2e; color: #e8eaed; }
+        label { color: #e8eaed; }
+        label i { color: #4a9ed8; }
+        input, select, textarea {
+            background: #252b3d;
+            border-color: #363d52;
+            color: #e8eaed;
+        }
+        input.has-value, textarea.has-value {
+            background: #2a3145;
+            border-color: #4a9ed8;
+            color: #ffffff;
+        }
+        input:focus, select:focus, textarea:focus {
+            background: #2a3145;
+            border-color: #4a9ed8;
+        }
+        input::placeholder, textarea::placeholder { color: #6b7280; }
+        .response-option label {
+            background: #252b3d;
+            border-color: #363d52;
+            color: #cbd5e0;
+        }
+        .response-option input[type="radio"]:checked + label {
+            background: #4a9ed8;
+            border-color: #4a9ed8;
+            color: white;
+        }
+        .preview-section {
+            background: #1e2a3d;
+            border-color: #2d4a6b;
+        }
+        .preview-section h3 { color: #4a9ed8; }
+        .preview-section pre { color: #cbd5e0; }
+        .footer-note { color: #8b95a5; }
+        .live-echo {
+            background: #1e2a3d;
+            border-left-color: #4a9ed8;
+            color: #e8eaed;
+        }
+        .live-echo .echo-label { color: #4a9ed8; }
+        .char-counter {
+            background: rgba(26, 31, 46, 0.9);
+            color: #8b95a5;
+        }
+        .clear-btn {
+            background: #363d52;
+            color: #a0aab5;
+        }
+        .clear-btn:hover { background: #e74c3c; color: white; }
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="logo"><i class="fas fa-clipboard-check"></i></div>
+        <h1>KBTI Survey Correction</h1>
+        <p>Field Data Correction Form</p>
+        <span class="badge"><i class="fas fa-user-tie"></i> Marketer Portal</span>
+    </div>
+
+    <form id="correctionForm" novalidate>
+
+        <!-- MARKETER NAME -->
+        <div class="form-group">
+            <label for="marketerName">
+                <i class="fas fa-user-tie"></i> Marketer Name <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="text" id="marketerName" name="marketer_name" placeholder="Enter your full name" autocomplete="name" required maxlength="60">
+                <button type="button" class="clear-btn" data-target="marketerName" aria-label="Clear field"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="live-echo" id="echo-marketerName">
+                <span class="echo-label">You typed:</span><span class="echo-value"></span>
+            </div>
+            <div class="error-message" id="err-marketerName">
+                <i class="fas fa-exclamation-circle"></i> Please enter the marketer's name
+            </div>
+        </div>
+
+        <!-- CLIENT NAME -->
+        <div class="form-group">
+            <label for="clientName">
+                <i class="fas fa-user"></i> Client Name <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="text" id="clientName" name="client_name" placeholder="Enter the client's full name" autocomplete="off" required maxlength="60">
+                <button type="button" class="clear-btn" data-target="clientName" aria-label="Clear field"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="live-echo" id="echo-clientName">
+                <span class="echo-label">You typed:</span><span class="echo-value"></span>
+            </div>
+            <div class="error-message" id="err-clientName">
+                <i class="fas fa-exclamation-circle"></i> Please enter the client's name
+            </div>
+        </div>
+
+        <!-- PHONE NUMBER -->
+        <div class="form-group">
+            <label for="phoneNumber">
+                <i class="fas fa-phone"></i> Phone Number <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+                <input type="tel" id="phoneNumber" name="phone_number" placeholder="e.g. 0712345678" inputmode="tel" autocomplete="tel" maxlength="13" required>
+                <button type="button" class="clear-btn" data-target="phoneNumber" aria-label="Clear field"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="input-hint"><i class="fas fa-info-circle"></i> Format: 07XXXXXXXX or +2547XXXXXXXX</div>
+            <div class="live-echo" id="echo-phoneNumber">
+                <span class="echo-label">You typed:</span><span class="echo-value"></span>
+            </div>
+            <div class="error-message" id="err-phoneNumber">
+                <i class="fas fa-exclamation-circle"></i> Please enter a valid Kenyan phone number
+            </div>
+        </div>
+
+        <!-- RESPONSE GIVEN -->
+        <div class="form-group">
+            <label>
+                <i class="fas fa-comment-dots"></i> Response Given <span class="required">*</span>
+            </label>
+            <div class="response-selector">
+                <div class="response-option">
+                    <input type="radio" id="resp-yes" name="response" value="Yes" required>
+                    <label for="resp-yes"><i class="fas fa-check-circle"></i> Yes</label>
+                </div>
+                <div class="response-option">
+                    <input type="radio" id="resp-no" name="response" value="No">
+                    <label for="resp-no"><i class="fas fa-times-circle"></i> No</label>
+                </div>
+                <div class="response-option">
+                    <input type="radio" id="resp-maybe" name="response" value="Maybe">
+                    <label for="resp-maybe"><i class="fas fa-question-circle"></i> Maybe</label>
+                </div>
+                <div class="response-option">
+                    <input type="radio" id="resp-na" name="response" value="Not Available">
+                    <label for="resp-na"><i class="fas fa-minus-circle"></i> N/A</label>
+                </div>
+            </div>
+            <div class="live-echo" id="echo-response">
+                <span class="echo-label">You selected:</span><span class="echo-value"></span>
+            </div>
+            <div class="error-message" id="err-response">
+                <i class="fas fa-exclamation-circle"></i> Please select a response
+            </div>
+        </div>
+
+        <!-- ADDITIONAL NOTES -->
+        <div class="form-group">
+            <label for="notes">
+                <i class="fas fa-pen"></i> Additional Notes <span style="color:#999;font-weight:400;">(optional)</span>
+            </label>
+            <div class="input-wrapper">
+                <textarea id="notes" name="notes" placeholder="Any extra details about the correction..." maxlength="250"></textarea>
+                <button type="button" class="clear-btn" data-target="notes" aria-label="Clear field" style="top: 14px; transform: none;"><i class="fas fa-times"></i></button>
+                <span class="char-counter" id="counter-notes">0 / 250</span>
+            </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="preview-section" id="previewSection">
+            <h3><i class="fas fa-eye"></i> Full Preview</h3>
+            <pre id="previewContent"></pre>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fab fa-whatsapp"></i> Send Correction via WhatsApp
+        </button>
+
+    </form>
+
+    <div class="footer-note">
+        <i class="fab fa-whatsapp"></i> Corrections will be sent to <strong>0752 584 077</strong><br>
+        Make sure all fields are correct before submitting.
+    </div>
+</div>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Correction sent!</span>
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    // ===== CONFIG =====
+    const WHATSAPP_NUMBER = '254752584077';
+    const MAX_LENGTHS = {
+        marketerName: 60,
+        clientName: 60,
+        phoneNumber: 13,
+        notes: 250
+    };
+
+    // ===== DOM REFS =====
+    const form = document.getElementById('correctionForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const previewSection = document.getElementById('previewSection');
+    const previewContent = document.getElementById('previewContent');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+
+    const marketerNameInput = document.getElementById('marketerName');
+    const clientNameInput   = document.getElementById('clientName');
+    const phoneInput        = document.getElementById('phoneNumber');
+    const notesInput        = document.getElementById('notes');
+
+    // ===== LIVE ECHO FUNCTION =====
+    function updateEcho(inputEl, echoId, prefix) {
+        const echo = document.getElementById(echoId);
+        if (!echo) return;
+
+        const value = inputEl.value;
+        const echoValue = echo.querySelector('.echo-value');
+
+        if (!value || !value.trim()) {
+            echo.classList.remove('visible');
+            return;
+        }
+
+        let displayValue = value;
+        if (inputEl.id === 'phoneNumber') {
+            displayValue = value; // show as typed
+        }
+
+        // Escape HTML to prevent XSS
+        const safe = displayValue
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+
+        echoValue.textContent = safe;
+        echo.classList.add('visible');
+
+        // Update echo label dynamically for response
+        if (inputEl.type === 'radio') {
+            const label = echo.querySelector('.echo-label');
+            if (label) label.textContent = 'You selected:';
+        }
+    }
+
+    // ===== HIDE ECHO WHEN EMPTY =====
+    function hideEcho(echoId) {
+        const echo = document.getElementById(echoId);
+        if (echo) echo.classList.remove('visible');
+    }
+
+    // ===== TOGGLE "has-value" CLASS =====
+    function toggleHasValue(inputEl) {
+        if (inputEl.value && inputEl.value.trim().length > 0) {
+            inputEl.classList.add('has-value');
+        } else {
+            inputEl.classList.remove('has-value');
+        }
+    }
+
+    // ===== TOGGLE CLEAR BUTTON =====
+    function toggleClearButton(inputEl) {
+        const wrapper = inputEl.closest('.input-wrapper');
+        if (!wrapper) return;
+        const btn = wrapper.querySelector('.clear-btn');
+        if (!btn) return;
+
+        if (inputEl.value && inputEl.value.trim().length > 0) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    }
+
+    // ===== CHARACTER COUNTER =====
+    function updateCounter(inputEl, counterId, max) {
+        const counter = document.getElementById(counterId);
+        if (!counter) return;
+
+        const len = inputEl.value.length;
+        counter.textContent = len + ' / ' + max;
+        counter.classList.add('visible');
+
+        counter.classList.remove('near-limit', 'at-limit');
+        if (len >= max) {
+            counter.classList.add('at-limit');
+        } else if (len >= max * 0.85) {
+            counter.classList.add('near-limit');
+        }
+    }
+
+    // ===== CLEAR BUTTON HANDLERS =====
+    document.querySelectorAll('.clear-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.target;
+            const input = document.getElementById(targetId);
+            if (!input) return;
+
+            input.value = '';
+            input.classList.remove('has-value', 'input-error');
+            this.classList.remove('visible');
+
+            // Hide related echo
+            const echo = document.getElementById('echo-' + targetId);
+            if (echo) echo.classList.remove('visible');
+
+            // Hide error
+            const parent = input.closest('.form-group');
+            if (parent) {
+                const err = parent.querySelector('.error-message');
+                if (err) err.classList.remove('show');
+            }
+
+            // Reset counter
+            if (targetId === 'notes') {
+                const counter = document.getElementById('counter-notes');
+                if (counter) {
+                    counter.textContent = '0 / 250';
+                    counter.classList.remove('near-limit', 'at-limit');
+                }
+            }
+
+            input.focus();
+            updatePreview();
+        });
+    });
+
+    // ===== ATTACH INPUT LISTENERS =====
+    function attachInputListeners(inputEl, echoId, counterId, max) {
+        // Input event — updates everything as user types
+        inputEl.addEventListener('input', function() {
+            toggleHasValue(this);
+            toggleClearButton(this);
+            updateEcho(this, echoId);
+            if (counterId && max) updateCounter(this, counterId, max);
+
+            // Clear error while typing
+            this.classList.remove('input-error');
+            const parent = this.closest('.form-group');
+            if (parent) {
+                const err = parent.querySelector('.error-message');
+                if (err) err.classList.remove('show');
+            }
+
+            // Phone auto-format
+            if (this.id === 'phoneNumber') {
+                let value = this.value.replace(/[^\d+\s\-()]/g, '');
+                if (value !== this.value) this.value = value;
+            }
+
+            updatePreview();
+        });
+
+        // Focus event — highlight
+        inputEl.addEventListener('focus', function() {
+            this.closest('.form-group').style.zIndex = '5';
+        });
+
+        inputEl.addEventListener('blur', function() {
+            this.closest('.form-group').style.zIndex = '';
+        });
+    }
+
+    attachInputListeners(marketerNameInput, 'echo-marketerName', null, null);
+    attachInputListeners(clientNameInput,   'echo-clientName',   null, null);
+    attachInputListeners(phoneInput,        'echo-phoneNumber',  null, null);
+    attachInputListeners(notesInput,        null,                'counter-notes', 250);
+
+    // ===== RADIO BUTTON ECHO =====
+    document.querySelectorAll('input[name="response"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const echo = document.getElementById('echo-response');
+            const echoValue = echo.querySelector('.echo-value');
+            echoValue.textContent = this.value;
+            echo.classList.add('visible');
+
+            // Clear error
+            const err = document.getElementById('err-response');
+            if (err) err.classList.remove('show');
+
+            updatePreview();
+        });
+    });
+
+    // ===== PHONE VALIDATION =====
+    function isValidKenyanPhone(phone) {
+        const cleaned = phone.replace(/[^\d+]/g, '');
+        return /^(?:\+?254|0)(7|1)\d{8}$/.test(cleaned);
+    }
+
+    function normalizePhoneForDisplay(phone) {
+        const cleaned = phone.replace(/[^\d+]/g, '');
+        if (cleaned.startsWith('+254')) return cleaned;
+        if (cleaned.startsWith('254')) return '+' + cleaned;
+        if (cleaned.startsWith('0')) return '+254' + cleaned.slice(1);
+        return cleaned;
+    }
+
+    // ===== ERROR HELPERS =====
+    function showError(inputEl, errorId) {
+        if (inputEl) inputEl.classList.add('input-error');
+        const err = document.getElementById(errorId);
+        if (err) err.classList.add('show');
+    }
+
+    function clearAllErrors() {
+        document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+        document.querySelectorAll('.error-message.show').forEach(el => el.classList.remove('show'));
+    }
+
+    // ===== VALIDATE =====
+    function validateForm() {
+        clearAllErrors();
+        let valid = true;
+
+        if (!marketerNameInput.value.trim()) {
+            showError(marketerNameInput, 'err-marketerName');
+            valid = false;
+        }
+
+        if (!clientNameInput.value.trim()) {
+            showError(clientNameInput, 'err-clientName');
+            valid = false;
+        }
+
+        const phone = phoneInput.value.trim();
+        if (!phone || !isValidKenyanPhone(phone)) {
+            showError(phoneInput, 'err-phoneNumber');
+            valid = false;
+        }
+
+        const response = document.querySelector('input[name="response"]:checked');
+        if (!response) {
+            const errResp = document.getElementById('err-response');
+            if (errResp) errResp.classList.add('show');
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    // ===== UPDATE PREVIEW =====
+    function updatePreview() {
+        const marketer = marketerNameInput.value.trim();
+        const client   = clientNameInput.value.trim();
+        const phone    = phoneInput.value.trim();
+        const responseEl = document.querySelector('input[name="response"]:checked');
+        const response = responseEl ? responseEl.value : '';
+        const notes    = notesInput.value.trim();
+
+        if (!marketer && !client && !phone && !response && !notes) {
+            previewSection.classList.remove('show');
+            return;
+        }
+
+        let preview = '';
+        if (marketer) preview += `Marketer: ${marketer}\n`;
+        if (client)   preview += `Client: ${client}\n`;
+        if (phone)    preview += `Phone: ${phone}\n`;
+        if (response) preview += `Response: ${response}\n`;
+        if (notes)    preview += `Notes: ${notes}`;
+
+        previewContent.textContent = preview.trim();
+        previewSection.classList.add('show');
+    }
+
+    // ===== BUILD WHATSAPP MESSAGE =====
+    function buildWhatsAppMessage() {
+        const marketer = marketerNameInput.value.trim();
+        const client   = clientNameInput.value.trim();
+        const phone    = normalizePhoneForDisplay(phoneInput.value.trim());
+        const responseEl = document.querySelector('input[name="response"]:checked');
+        const response = responseEl ? responseEl.value : '';
+        const notes    = notesInput.value.trim();
+        const now      = new Date();
+        const timestamp = now.toLocaleString('en-KE', {
+            day: '2-digit', month: '2-digit', year: 'numeric',
+            hour: '2-digit', minute: '2-digit'
+        });
+
+        let msg = '';
+        msg += '*KBTI SURVEY CORRECTION*\n';
+        msg += '━━━━━━━━━━━━━━━━━━━━\n';
+        msg += `*Marketer Name:* ${marketer}\n`;
+        msg += `*Client Name:* ${client}\n`;
+        msg += `*Phone Number:* ${phone}\n`;
+        msg += `*Response Given:* ${response}\n`;
+        if (notes) {
+            msg += `*Additional Notes:* ${notes}\n`;
+        }
+        msg += '━━━━━━━━━━━━━━━━━━━━\n';
+        msg += `_Submitted: ${timestamp}_\n`;
+        msg += '_Sent from KBTI Field Correction Form_';
+
+        return msg;
+    }
+
+    // ===== TOAST =====
+    function showToast(message, isError) {
+        toastMessage.textContent = message;
+        toast.classList.toggle('error', !!isError);
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 4000);
+    }
+
+    // ===== SUBMIT =====
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            const firstError = document.querySelector('.input-error, .error-message.show');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            showToast('Please fill in all required fields correctly', true);
+            return;
+        }
+
+        submitBtn.disabled = true;
+        const originalHTML = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening WhatsApp...';
+
+        const message = buildWhatsAppMessage();
+        const encoded = encodeURIComponent(message);
+
+        const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        const url = isMobile
+            ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`
+            : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
+
+        showToast('Opening WhatsApp...', false);
+
+        setTimeout(() => {
+            try {
+                const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+                if (!newWindow) window.location.href = url;
+            } catch (err) {
+                window.location.href = url;
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalHTML;
+        }, 600);
+    });
+
+    // ===== INITIAL STATE =====
+    window.addEventListener('load', function() {
+        setTimeout(() => marketerNameInput.focus(), 300);
+    });
+
+})();
+</script>
+
+</body>
+</html>
